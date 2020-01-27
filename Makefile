@@ -1,10 +1,10 @@
 DIRS = src modules lualib
 
 all:
-	for i in $(DIRS); do make -C $$i; done
+	for i in $(DIRS); do $(MAKE) -C $$i; done
 
 clean:
-	for i in $(DIRS); do cd $$i;make clean;cd ..; done
+	for i in $(DIRS); do cd $$i; $(MAKE) clean;cd ..; done
 
 install: all
 	#mkdir for tsar
@@ -22,7 +22,7 @@ install: all
 	#copy man file
 	cp conf/tsar.8 /usr/local/man/man8/
 	#install lualib
-	make -C lualib install
+	$(MAKE) -C lualib install
 
 uninstall:
 	#rm tsar
